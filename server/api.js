@@ -89,20 +89,20 @@ router.delete(
 
 // all these update user info by its relevant column. 
 router.put(
-  '/incidents/update-username',
+  '/users/update-username',
   controller.updateUsername,
   (req, res) => res.status(200).json('Username was updated!')
 );
 
 router.put(
-  '/incidents/update-pw',
+  '/users/update-pw',
   controller.updatePW,
   (req, res) => res.status(200).json('Password was updated!')
 );
 
-// Removes public.incident by username. 
+// Removes public.user by username. 
 router.delete(
-  '/incidents/remove-user',
+  '/users/remove-user',
   controller.removeUser,
   (req, res) => res.status(200).json('Incident was removed!')
 );
