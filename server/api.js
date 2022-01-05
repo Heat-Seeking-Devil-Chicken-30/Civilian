@@ -80,7 +80,7 @@ router.put(
   (req, res) => res.status(200).json('details was updated!')
 );
 
-// Removes public.incident by ID. 
+// Removes public.incident by incident_id. 
 router.delete(
   '/incidents/remove-incident',
   controller.removeIncident,
@@ -106,5 +106,7 @@ router.delete(
   controller.removeUser,
   (req, res) => res.status(200).json('Incident was removed!')
 );
+
+
 
 module.exports = router;
