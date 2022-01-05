@@ -1,15 +1,13 @@
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
-const PG_URI = 
-  'postgres://vgrmebyf:S_1pEz4mslMJN_ie4x4YM8fnQOm2YdKv@kashin.db.elephantsql.com/vgrmebyf';
+const PG_URI =
+  "postgres://llunvtum:cje-fpX2AD0y7OxYaSm71gTlWMSmZugN@fanny.db.elephantsql.com/llunvtum";
 
-  const pool = new Pool({
-    connectionString: PG_URI,
-  });
+const pool = new Pool({
+  connectionString: PG_URI,
+});
 
-
-
-  /* 
+/* 
   the database has multiple tables:
 
   table public.incident:
@@ -34,11 +32,11 @@ const PG_URI =
         "password": "string here"
     },
 
-  */  
+  */
 
-  module.exports = {
-    query: (text, params, callback) => {
-      console.log('executed query', text);
-      return pool.query(text, params, callback);
-    }
-  };
+module.exports = {
+  query: (text, params, callback) => {
+    console.log("executed query", text);
+    return pool.query(text, params, callback);
+  },
+};

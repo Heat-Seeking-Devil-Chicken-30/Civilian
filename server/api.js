@@ -80,4 +80,26 @@ router.put(
   (req, res) => res.status(200).json('details was updated!')
 );
 
+// all these remove public.incident by its relevant column. 
+// :Id should match primary key of public.incident.incident_id
+router.delete(
+  '/incidents/remove-incident',
+  controller.removeIncident,
+  (req, res) => res.status(200).json('Incident was removed!')
+);
+
+// // all these update user info by its relevant column. 
+// // :Id should match primary key of public.incident.incident_id
+// router.put(
+//   '/incidents/update-title:id',
+//   controller.updateIncidentTitle,
+//   (req, res) => res.status(200).json('Title was updated!')
+// );
+
+// router.put(
+//   '/incidents/update-streetname:id',
+//   controller.updateIncidentStreetName,
+//   (req, res) => res.status(200).json('streetname was updated!')
+// );
+
 module.exports = router;

@@ -1,7 +1,12 @@
-const db = require('./database');
-const bcrypt = require('bcrypt');
+const db = require("./database");
+const bcrypt = require("bcrypt");
 
 const controller = {};
+
+controller.removeIncidentTitle = async (req, res, next) => {
+  try {
+  } catch (error) {}
+};
 
 // hash a user inputted password
 controller.hash = async (req, res, next) => {
@@ -17,7 +22,7 @@ controller.hash = async (req, res, next) => {
       log: `controller.hash ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.hash. Check the server logs.',
+        err: "Error occurred in controller.hash. Check the server logs.",
       },
     });
   }
@@ -42,7 +47,7 @@ controller.getUsers = async (req, res, next) => {
     return next({
       log: `getUsers controller ERROR`,
       message: {
-        err: 'Error occurred in controller.getUsers. Check the server logs.',
+        err: "Error occurred in controller.getUsers. Check the server logs.",
       },
     });
   }
@@ -67,7 +72,7 @@ controller.getIncidents = async (req, res, next) => {
     return next({
       log: `getIncident controller ERROR`,
       message: {
-        err: 'Error occurred in controller.getIncidents. Check the server logs.',
+        err: "Error occurred in controller.getIncidents. Check the server logs.",
       },
     });
   }
@@ -75,7 +80,7 @@ controller.getIncidents = async (req, res, next) => {
 
 // get name, and photo of a user. Requires name and password
 controller.getUserName = async (req, res, next) => {
-  console.log('USERNAME req body', req.body);
+  console.log("USERNAME req body", req.body);
   try {
     const { name, password } = req.body;
     // SQL command string
@@ -91,7 +96,7 @@ controller.getUserName = async (req, res, next) => {
     // bcrypt comparison check
     await bcrypt.compare(password, hash, (err, ok) => {
       if (ok) {
-        console.log('bcrypt comparison check OK');
+        console.log("bcrypt comparison check OK");
         return next();
       } else {
         res.send(err);
@@ -109,7 +114,7 @@ controller.getUserName = async (req, res, next) => {
     return next({
       log: `getIncidentByUserName controller ERROR`,
       message: {
-        err: 'Error occurred in controller.getIncidentByUserName. Check the server logs.',
+        err: "Error occurred in controller.getIncidentByUserName. Check the server logs.",
       },
     });
   }
@@ -117,7 +122,7 @@ controller.getUserName = async (req, res, next) => {
 
 // query incidents in public.incident by any value matching any part of public.incident.street_name
 controller.getIncidentByStreetName = async (req, res, next) => {
-  console.log(req.params);
+  console.log("REQ.PARAMS: ", req.params);
   console.log(new Date(Date.now()).toString());
   try {
     const { name } = req.params;
@@ -137,7 +142,7 @@ controller.getIncidentByStreetName = async (req, res, next) => {
     return next({
       log: `getIncidentByStreetName controller ERROR`,
       message: {
-        err: 'Error occurred in controller.getIncidentByStreetName. Check the server logs.',
+        err: "Error occurred in controller.getIncidentByStreetName. Check the server logs.",
       },
     });
   }
@@ -180,16 +185,15 @@ controller.postEvent = async (req, res, next) => {
       log: `controller.postEvent ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.postEvent. Check the server logs.',
+        err: "Error occurred in controller.postEvent. Check the server logs.",
       },
     });
   }
 };
 
-
 // create a new row in public.user, storing name and encrypted password
 controller.newUser = async (req, res, next) => {
-  console.log('signupInfo', res.locals.signupInfo);
+  console.log("signupInfo", res.locals.signupInfo);
 
   try {
     // object destructuring the req.body to pass in to params
@@ -210,6 +214,8 @@ controller.newUser = async (req, res, next) => {
         RETURNING *
         `;
 
+    console.log("params", params);
+
     // our async function passing in the SQL command string 'text' and our params data
     const result = await db.query(text, params);
 
@@ -221,7 +227,7 @@ controller.newUser = async (req, res, next) => {
       log: `controller.newUser ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.newUser. Check the server logs.',
+        err: "Error occurred in controller.newUser. Check the server logs.",
       },
     });
   }
@@ -229,7 +235,7 @@ controller.newUser = async (req, res, next) => {
 
 // updates fields in public.incident table by column name
 controller.updateIncidentTitle = async (req, res, next) => {
-  console.log('req.body', req.body);
+  console.log("req.body", req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const { title } = req.body; // for sql SET
@@ -242,14 +248,14 @@ controller.updateIncidentTitle = async (req, res, next) => {
       log: `controller.updateIncidentTitle ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.updateIncidentTitle. Check the server logs.',
+        err: "Error occurred in controller.updateIncidentTitle. Check the server logs.",
       },
     });
   }
 };
 
 controller.updateIncidentStreetName = async (req, res, next) => {
-  console.log('req.body', req.body);
+  console.log("req.body", req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const { streetname } = req.body; // for sql SET
@@ -262,14 +268,14 @@ controller.updateIncidentStreetName = async (req, res, next) => {
       log: `controller.updateIncidentStreetName ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.updateIncidentStreetName. Check the server logs.',
+        err: "Error occurred in controller.updateIncidentStreetName. Check the server logs.",
       },
     });
   }
 };
 
 controller.updateIncidentVideo = async (req, res, next) => {
-  console.log('req.body', req.body);
+  console.log("req.body", req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const { videoUrl } = req.body; // for sql SET
@@ -282,14 +288,14 @@ controller.updateIncidentVideo = async (req, res, next) => {
       log: `controller.updateIncidentVideo ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.updateIncidentVideo. Check the server logs.',
+        err: "Error occurred in controller.updateIncidentVideo. Check the server logs.",
       },
     });
   }
 };
 
 controller.updateIncidentImage = async (req, res, next) => {
-  console.log('req.body', req.body);
+  console.log("req.body", req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const { imageUrl } = req.body; // for sql SET
@@ -302,14 +308,14 @@ controller.updateIncidentImage = async (req, res, next) => {
       log: `controller.updateIncidentImage ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.updateIncidentImage. Check the server logs.',
+        err: "Error occurred in controller.updateIncidentImage. Check the server logs.",
       },
     });
   }
 };
 
 controller.updateIncidentDetails = async (req, res, next) => {
-  console.log('req.body', req.body);
+  console.log("req.body", req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const { details } = req.body; // for sql SET
@@ -322,7 +328,27 @@ controller.updateIncidentDetails = async (req, res, next) => {
       log: `controller.updateIncidentDetails ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.updateIncidentDetails. Check the server logs.',
+        err: "Error occurred in controller.updateIncidentDetails. Check the server logs.",
+      },
+    });
+  }
+};
+
+// removes fields in public.incident table by column name
+controller.removeIncident = async (req, res, next) => {
+  console.log('req.body', req.body);
+  try {
+    const { id } = req.params; // for sql WHERE
+    const text = `DELETE FROM public.incident WHERE incident_id = $1`;
+
+    await db.query(text, [id]);
+    return next();
+  } catch (error) {
+    return next({
+      log: `controller.removeIncidentTitle ERROR found`,
+      status: 500,
+      message: {
+        err: 'Error occurred in controller.removeIncidentTitle. Check the server logs.',
       },
     });
   }
