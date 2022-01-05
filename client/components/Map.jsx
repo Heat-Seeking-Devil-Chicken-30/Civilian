@@ -48,7 +48,7 @@ const Map = (props) => {
       
       // on dbl click => get coordinates, open incident modal, create a pin and send off to reducer 
       onDblClick={({ lngLat }) => {console.log(lngLat);props.saveUserCoords(lngLat);props.onOpenIncidentFormClick()}}
-      mapStyle='mapbox://styles/ruzeb/ckxzlf0mk9gn714qei4cq6lm1' 
+      mapStyle='mapbox://styles/rainlewis/cky0soy9upy3p17peegj7lacj'
       doubleClickZoom={false}
       attributionControl={false}
       onViewportChange={(newViewport) => {props.setMap(newViewport)}
@@ -59,7 +59,7 @@ const Map = (props) => {
           <Marker key={key + 1} latitude={el.latitude} longitude={el.longitude} address={el.address} id={el.id}>
           {/* button onclick post pops up */}
             <button className='map-pin' onClick={(e) => {props.changeActivePost(el.id)}} style={{backgroundColor: 'transparent', border: 'none'}}>
-              <img src={logo} alt='pin' style={{backgroundColor: 'transparent', height: '50px', width: '50px'}}/>
+              <img src={logo} alt='pin' className='incident-pin' style={{backgroundColor: 'transparent', height: '20px', width: 'auto'}}/>
             </button>
           </Marker>
           )
