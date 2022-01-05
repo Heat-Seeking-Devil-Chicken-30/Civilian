@@ -15,6 +15,7 @@ import {CSSTransition} from 'react-transition-group';
 import ExpandedPost from './components/ExpandedPost';
 import FormModal from './components/FormModal'
 import IncidentModal from './components/IncidentModal'
+import SearchPanel from './components/SearchPanel'
 
 const mapStateToProps = ({posts: { expandedPost }, user: {isLoggedIn, username, photo}}) => ({
   expandedPost,
@@ -40,7 +41,11 @@ const App = (props) => {
         <span id="lian">LIAN</span>
       </div>
       <div id="main-content">
+
+      <SearchPanel />
         <div id="map">
+
+          {/* Map Component is rendered here */}
           <Map onOpenIncidentFormClick={() => {setShowIncidentModal(true)}} />
         </div>
         <Post />
@@ -58,6 +63,9 @@ const App = (props) => {
           onCloseButtonClick={() => {setShowIncidentModal(false)}}
         />
       )}
+    <div class='footer'>
+    Footer
+    </div>
     </div>
   );
 };
