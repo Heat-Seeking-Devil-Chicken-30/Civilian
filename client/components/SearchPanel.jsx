@@ -28,7 +28,7 @@ const SearchPanel = (props) => {
   };
 
   const filteredIncidents = props.allIncidents.filter(incident =>
-    incident.street_name.toLowerCase().includes(search.toLowerCase())
+    incident.street_name.toLowerCase().includes(search.toLowerCase()) || incident.details.toLowerCase().includes(search.toLowerCase()) || incident.title.toLowerCase().includes(search.toLowerCase())
   );
   
   return (

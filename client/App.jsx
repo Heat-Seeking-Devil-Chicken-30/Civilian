@@ -34,6 +34,7 @@ const App = (props) => {
         <BsPersonCircle onClick={() => {setShowFormModal(true)}}/>
       </IconContext.Provider>}
       {props.isLoggedIn && <div id="user-container"><img id='user-image' src={props.photo}/> <span id="welcome-text">Hello <b>{props.username.toUpperCase()}</b></span></div>}
+      
       <div id="logo-wrapper">
         <span id="civ">CIV</span>
         <img id="logo" src={logo}/>
@@ -43,12 +44,11 @@ const App = (props) => {
       <div id="main-content">
       <SearchPanel/>
         <div id="map">
-
           {/* Map Component is rendered here */}
           <Map onOpenIncidentFormClick={() => {setShowIncidentModal(true)}} />
         </div>
-        <Post />
       </div>
+      <Post />
       <CSSTransition in={props.expandedPost} timeout={500} classNames="expanded-transition" unmountOnExit appear>
         <ExpandedPost key={1000}/>
       </CSSTransition>
@@ -62,6 +62,8 @@ const App = (props) => {
           onCloseButtonClick={() => {setShowIncidentModal(false)}}
         />
       )}
+
+
     <div class='footer'>
     © CIVILIAN 2022
     </div>
