@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import ReactDom from "react-dom";
 import Map from './components/Map';
 
-
 import { connect } from 'react-redux';
 import './stylesheets/styles.css';
 import logo from '../assets/danger-pin.png'
@@ -15,6 +14,7 @@ import {CSSTransition} from 'react-transition-group';
 import ExpandedPost from './components/ExpandedPost';
 import FormModal from './components/FormModal'
 import IncidentModal from './components/IncidentModal'
+import SearchPanel from './components/SearchPanel'
 
 const mapStateToProps = ({posts: { expandedPost }, user: {isLoggedIn, username, photo}}) => ({
   expandedPost,
@@ -39,8 +39,12 @@ const App = (props) => {
         <img id="logo" src={logo}/>
         <span id="lian">LIAN</span>
       </div>
+      
       <div id="main-content">
+      <SearchPanel/>
         <div id="map">
+
+          {/* Map Component is rendered here */}
           <Map onOpenIncidentFormClick={() => {setShowIncidentModal(true)}} />
         </div>
         <Post />
@@ -58,6 +62,9 @@ const App = (props) => {
           onCloseButtonClick={() => {setShowIncidentModal(false)}}
         />
       )}
+    <div class='footer'>
+    © CIVILIAN 2022
+    </div>
     </div>
   );
 };

@@ -10,9 +10,54 @@ describe('Route Integration Tests', () => {
   //  get /users
 
   xdescribe('/users', () => {
+    let user_id;
     it('returns existing users', () => {
       return request(server)
         .get('/api/users')
+        .expect('Content-Type', /application\/json/)
+        .expect(200);
+    });
+
+    it('adds a new user', async () => {
+      const newUser = {
+        name: 'testuser',
+        password: '123',
+      };
+
+      user_id = await request(server)
+        .post('/api/signup')
+        .send(newUser)
+        .expect('Content-Type', /application\/json/)
+        .expect(201)
+        .then((res) => res.body.user_id);
+    });
+
+    //  put /users/update-username
+    it('updates existing username', () => {
+      const updatedUsername = 'cat';
+      return request(server)
+        .put('/api/users/update-username' + user_id)
+        .send(updatedUsername)
+        .expect('Content-Type', /application\/json/)
+        .expect(200);
+    });
+
+    //  put /users/update-pw
+    it('updates existing user password', async () => {
+      const updatedPW = '345';
+      const hashedPassword = await bcrypt.hash(updatedPW, 10, (err, hash) => {
+        return hash;
+      });
+      return request(server)
+        .put('/api/users/update-pw' + user_id)
+        .send(hashedPassword)
+        .expect('Content-Type', /application\/json/)
+        .expect(200);
+    });
+
+    it('deletes the user', () => {
+      return request(server)
+        .delete('/api/users/remove-user' + user_id)
         .expect('Content-Type', /application\/json/)
         .expect(200);
     });
@@ -49,16 +94,16 @@ describe('Route Integration Tests', () => {
     });
   });
 
-  describe('/post', () => {
+  xdescribe('/post', () => {
     let incident_id;
 
     it('adds an incident event', async () => {
       const incident_entry = {
-        title: 'Another Test Title',
+        title: 'Route Testing Entry',
         street_name: '237 Arnold Drive Staten Island, NY 10314, United States',
         video_url: '',
         image_url: '',
-        details: 'Test Location',
+        details: 'Test Details',
       };
 
       //Addeds Incident
@@ -77,7 +122,7 @@ describe('Route Integration Tests', () => {
     it('updates the title in incident event', () => {
       const updatedTitle = { title: 'Updated Test Title' };
 
-      request(server)
+      return request(server)
         .put('/api/incidents/update-title' + incident_id)
         .send(updatedTitle)
         .expect('Content-Type', /application\/json/)
@@ -90,7 +135,7 @@ describe('Route Integration Tests', () => {
         streetname: '25 Kent Dr. Bronx, NY 10466, United States',
       };
 
-      request(server)
+      return request(server)
         .put('/api/incidents/update-streetname' + incident_id)
         .send(updatedStreetName)
         .expect('Content-Type', /application\/json/)
@@ -98,70 +143,49 @@ describe('Route Integration Tests', () => {
     });
 
     //  put /incidents/update-video:id
-    xit('updates the video url in incident event', () => {
+    it('updates the video url in incident event', () => {
       const updatedVideoUrl = {
         videoUrl: 'https://youtu.be/dQw4w9WgXcQ',
       };
 
-      request(server)
+      return request(server)
         .put('/api/incidents/update-video' + incident_id)
         .send(updatedVideoUrl)
         .expect('Content-Type', /application\/json/)
         .expect(200);
     });
 
-    xit('updates the image url in incident event', () => {
+    it('updates the image url in incident event', () => {
       const updatedImageUrl = {
-        imgUrl:
+        imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/8/8d/Frog_on_palm_frond.jpg',
       };
 
-      request(server)
+      return request(server)
         .put('/api/incidents/update-image' + incident_id)
         .send(updatedImageUrl)
         .expect('Content-Type', /application\/json/)
         .expect(200);
     });
 
-    xit('updates the details in incident event', () => {
+    it('updates the details in incident event', () => {
       const updatedDetails = {
         details: 'Updated Details Text',
       };
 
-      request(server)
+      return request(server)
         .put('/api/incidents/update-details' + incident_id)
         .send(updatedDetails)
         .expect('Content-Type', /application\/json/)
         .expect(200);
     });
 
-    xit('deletes the incident event', () => {});
-  });
-
-  xdescribe('/signup', () => {
-    //  post /signup
-    it('adds a new user', async () => {
-      const newUser = {
-        name: 'testuser',
-        password: '123',
-      };
-
-      const createdUser = await request(server)
-        .post('/api/signup')
-        .send(newUser)
-        .expect('Content-Type', /application\/json/);
-
-      const queryString = `SELECT * FROM "public".user WHERE name='testuser'`;
-      const findUser = await db.query(queryString);
-
-      expect(findUser.name).toEqual(newUser.name);
-      await bcrypt.compare(newUser.password, findUser.password, (err, ok) => {
-        expect(ok).not.toEqual(null);
-      });
+    //  delete /incidents/remove-incident
+    it('deletes the incident event', () => {
+      return request(server)
+        .delete('/api/incidents/remove-incident' + incident_id)
+        .expect('Content-Type', /application\/json/)
+        .expect(200);
     });
   });
-
-  //  delete /incidents/remove-incident
-  //  put /users/update-username
-  //  put /users/update-pw
 });

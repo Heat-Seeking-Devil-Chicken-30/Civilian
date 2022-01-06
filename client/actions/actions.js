@@ -41,7 +41,7 @@ export const signUp = (username, password) => (dispatch) => {
       password: password
     })
     .then(({data}) => {
-      console.log('data', data);
+      console.log('data : ', data);
       dispatch({
         type: types.GET_USERNAME,
         payload: data,

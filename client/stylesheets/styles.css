@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -36,12 +35,13 @@ body{
 #main-content {
   flex: 1 1 90vh;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 320px;
   gap: 15px;
-  padding: 15px;
+  /* padding: 15px; */
   margin-bottom: 10vh;
 }
 
@@ -77,8 +77,6 @@ body{
   font-size: 14px;
 }
 
-
-
 #logo-wrapper{
   position: relative;
   flex: 1 1 10vh;
@@ -95,21 +93,22 @@ body{
 #civ{
   position: absolute;
   top: 50%;
-  left: 0%;
+  left: -10%;
   transform: translate(-90%, -50%);
 }
 
 #lian{
   position: absolute;
   top: 50%;
-  left: 90%;
+  left: 100%;
   transform: translate(0, -50%);
 }
 
 #logo{
+  margin-top: 30px;
   z-index: 30;
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 40%;
 }
 
 #logo:hover{
@@ -135,12 +134,17 @@ body{
 }
 
 #map {
-  width: 100%;
+  width: 73%;
   position: relative;
   min-height: 100px;
-  min-width: 300px;
-  flex: 1 1 50vh;
-  border: 1px red solid;
+  height: 100%;
+  /* flex-direction: column; */
+  align-self: flex-end;
+  /* min-width: 300px; */
+  /* flex: 1 .75 50vh; */
+  /* border: 1px white solid; */
+  padding: 0;
+  margin-right: 1.5vw;
 }
 
 #map-img{
@@ -148,9 +152,120 @@ body{
   height: 100%;;
 }
 
+#SearchPanel {
+  align-self: flex-start;
+  border: 1px white solid;
+  width: 25%;
+  margin-left: 1.5vw;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgba(16, 16, 16, 0.475);
+  overflow: hidden;
+}
+
+#search-field { 
+  width: 100%;;
+  background-color: #11141a;
+  padding: 0;
+  margin: 0;
+  outline: none; 
+  box-sizing: border-box;
+  display: inline-block;
+  align-self: flex-start;
+  color: white;
+  padding-left: 5px;
+  height: 3vh;
+  border: none;
+}
+
+#searchbox { 
+  display: flex; 
+  box-shadow: none;
+  /* margin-bottom: 2vh; */
+  border: rgb(179, 179, 179) solid 0.3px;
+}
+
+.incident-container {
+  padding-left: 10px;
+  /* border-top: rgba(255, 255, 255, 0.221) solid 0.15px; */
+  border-bottom: rgba(255, 255, 255, 0.221) solid 0.15px;
+  display: flex;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.incident-container img { 
+  height: 6em;
+  width: 6em;
+  border-radius: 8px;
+}
+
+.incident-details-container p { 
+  font-size: 0.7em;
+  font-weight: 200;
+  color: grey;
+}
+
+.incident-details-container h4 { 
+  font-size: 1em;
+  font-weight: 700;
+  padding-bottom: 2.5%;
+}
+
+.incident-details-container {
+  padding-left: 4%;
+}
+
+.time_created_fromNow { 
+  font-size: 0.6em;
+  color: rgb(242, 241, 241);
+  padding-top: 5%;
+}
+
+.time_created { 
+  font-size: 0.6em;
+  color: rgb(182, 182, 182);
+  margin-right: 10px;
+}
+
+form button { 
+  width: 20%;
+  float: right;
+  margin: 0;
+  padding: 0;
+  /* float: right;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  box-shadow: none; */
+  /* font-size: 10px; */
+  /* border: 1px solid grey; */
+  /* border-left: none;
+  cursor: pointer; */
+}
+
+.Searchresults {
+  margin-top: 5px;
+  color: white;
+  font-size: 12px;
+}
+/* .Searchresults {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+} */
+
+#searchheader {
+  font-weight: 600;
+}
+
 .map-pin{
   background-color: transparent;
-  height: 50px;
+  height: 20px;
   width: 50px;
   transition-timing-function: ease-in;
   transition: transform 0.51s;
@@ -396,4 +511,17 @@ label {
   margin-top: 20px;
   height: 50px;
   width: 50px;
+}
+
+.footer { 
+  background-color: #060607;
+  color: white;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 5vh;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 10px;
 }

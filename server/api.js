@@ -5,24 +5,18 @@ const controller = require('./controller');
 const router = express.Router();
 
 // gets all rows from public.user table
-router.get(
-  '/users', 
-  controller.getUsers, 
-  (req, res) => res.status(200).json(res.locals.userInfo)
+router.get('/users', controller.getUsers, (req, res) =>
+  res.status(200).json(res.locals.userInfo)
 );
 
 // gets all incidents from public.incident table
-router.get(
-  '/incidents', 
-  controller.getIncidents, 
-  (req, res) => res.status(200).json(res.locals.incidentInfo)
+router.get('/incidents', controller.getIncidents, (req, res) =>
+  res.status(200).json(res.locals.incidentInfo)
 );
 
 // gets name, photo from pulblic.user, passing username &  decrypting password in req.body
-router.post(
-  '/incidents/user', 
-  controller.getUserName, 
-  (req, res) => res.status(200).json(res.locals.user)
+router.post('/incidents/user', controller.getUserName, (req, res) =>
+  res.status(200).json(res.locals.user)
 );
 
 // gets all incidents from public.incident by street name. Can target address, city, state, or zipcode
@@ -33,22 +27,16 @@ router.get(
 );
 
 // posts data into a row in the public.incident table
-router.post(
-  '/postevent', 
-  controller.postEvent, 
-  (req, res) => res.status(201).json(res.locals.allEvents)
+router.post('/postevent', controller.postEvent, (req, res) =>
+  res.status(201).json(res.locals.allEvents)
 );
 
 // posts name, encrypted password into a row in the public.user table
-router.post(
-  '/signup', 
-  controller.hash, 
-  controller.newUser, 
-  (req, res) =>res.status(201).json(res.locals.newUser)
+router.post('/signup', controller.hash, controller.newUser, (req, res) =>
+  res.status(201).json(res.locals.newUser)
 );
 
-
-// all these update public.incident by its relevant column. 
+// all these update public.incident by its relevant column.
 // :Id should match primary key of public.incident.incident_id
 router.put(
   '/incidents/update-title:id',
@@ -78,6 +66,29 @@ router.put(
   '/incidents/update-details:id',
   controller.updateIncidentDetails,
   (req, res) => res.status(200).json('details was updated!')
+);
+
+// Removes public.incident by incident_id.
+router.delete(
+  '/incidents/remove-incident:id',
+  controller.removeIncident,
+  (req, res) => res.status(200).json('Incident was removed!')
+);
+
+// all these update user info by its relevant column.
+router.put(
+  '/users/update-username:user_id',
+  controller.updateUsername,
+  (req, res) => res.status(200).json('Username was updated!')
+);
+
+router.put('/users/update-pw:user_id', controller.updatePW, (req, res) =>
+  res.status(200).json('Password was updated!')
+);
+
+// Removes public.user by username.
+router.delete('/users/remove-user:user_id', controller.removeUser, (req, res) =>
+  res.status(200).json('Incident was removed!')
 );
 
 module.exports = router;
