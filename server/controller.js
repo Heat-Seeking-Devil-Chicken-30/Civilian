@@ -315,7 +315,6 @@ controller.updateIncidentImage = async (req, res, next) => {
 };
 
 controller.updateIncidentDetails = async (req, res, next) => {
-  console.log("req.body", req.body);
   try {
     const { details } = req.body; // for sql SET
     const { id } = req.params; // for sql WHERE
