@@ -47,14 +47,26 @@ const Map = (props) => {
     bottom: 10
   }
 
+  // const handleGeocoderViewportChange = useCallback(
+  //   (newViewport) => {
+  //     const geocoderDefaultOverrides = { transitionDuration: 1000 };
 
+  //     return handleViewportChange({
+  //       ...newViewport,
+  //       ...geocoderDefaultOverrides
+  //     });
+  //   },
+  //   [handleViewportChange]
+  // );
+
+  
   return (
     
     <ReactMapGL
       {...props.viewport} 
       height='100%'
       width='100%' 
-      mapboxApiAccessToken = {process.env.REACT_APP_MAPBOX_ACCESS_TOKEN} 
+      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN} 
       showCompass={false} // removes compass from navigationControl
       mapStyle='mapbox://styles/rainlewis/cky0soy9upy3p17peegj7lacj'
       doubleClickZoom={false}
@@ -66,14 +78,21 @@ const Map = (props) => {
 
       // on dbl click => get coordinates, open incident modal, create a pin and send off to reducer 
       onDblClick={({ lngLat }) => {console.log(lngLat);props.saveUserCoords(lngLat);props.onOpenIncidentFormClick()}}
-
+      // onViewportChange={handleViewportChange}
       onViewportChange={(newViewport) => {props.setMap(newViewport)}
     }>
+     {/* <Geocoder
+          mapRef={mapRef}
+          onViewportChange={handleGeocoderViewportChange}
+          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN} 
+          position="top-left"
+        /> */}
+
         {props.pinLocations.map((el, key) => {
           return (
             
           <Marker key={key + 1} latitude={el.latitude} longitude={el.longitude} address={el.address} id={el.id}>
-          {/* button onclick post pops up */}
+
             <button className='map-pin' onClick={(e) => {props.changeActivePost(el.id)}} style={{backgroundColor: 'transparent', border: 'none'}}>
               <img src={logo} alt='pin' className='incident-pin' style={{backgroundColor: 'transparent', height: '20px', width: 'auto'}}/>
             </button>

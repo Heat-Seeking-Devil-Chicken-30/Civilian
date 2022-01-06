@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { connect } from 'react-redux';
 import Incident from './Incident';
 
@@ -11,7 +11,9 @@ const mapStateToProps = ({map: {viewport, pinLocations, allIncidents}}) => ({
 })
 
 const SearchPanel = (props) => {
-  // console.log(props.allIncidents);
+
+  const [search, setSearch] = useState('');
+  console.log(props.allIncidents);
 
   // const totalIncidents = [];
   // const incidents = props.allIncidents;
@@ -19,17 +21,26 @@ const SearchPanel = (props) => {
   //   totalIncidents.push(<Incident incident={incidents[i]} key={i}/>); 
   // }
   // console.log(totalIncidents);
+
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredIncidents = props.allIncidents.filter(incident =>
+    incident.street_name.toLowerCase().includes(search.toLowerCase())
+  );
   
   return (
 
   <div id='SearchPanel'>
     <form id='searchbox'>
-      <input type='text' id='search-field' placeholder='Search for incidents..' name='search'></input>
+      <input type='text' id='search-field' placeholder='Search for incidents..' name='search' onChange={handleChange}></input>
       <button type="submit"><i className="fa fa-search"></i></button>
     </form>
 
     <div id="total-incident-parent-container">
-    {props.allIncidents.map(incident => (
+    {filteredIncidents.map(incident => (
       <Incident
       key={incident.id}
       incident={incident}
