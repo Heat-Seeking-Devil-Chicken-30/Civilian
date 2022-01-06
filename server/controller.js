@@ -373,8 +373,6 @@ controller.updateUsername = async (req, res, next) => {
 
 
 controller.updatePW = async (req, res, next) => {
-  console.log("req.body", req.body);
-  console.log("req.params", req.params);
   try {
     const { password } = req.body; // for sql SET
     const { name } = req.params;
