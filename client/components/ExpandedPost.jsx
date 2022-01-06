@@ -38,7 +38,7 @@ const ExpandedPost = (props) => {
       </div> 
       {props.video_url  && 
       <div className='post-video'>
-        <iframe id="yt-vid" src={props.video_url + YT_EMBED_OPTIONS} frameBorder="0">
+        <iframe id="yt-vid" src={props.video_url + YT_EMBED_OPTIONS}  allow="autoplay" frameBorder="0">
         </iframe>
       </div>}
     </div>
