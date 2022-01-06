@@ -353,8 +353,6 @@ controller.removeIncident = async (req, res, next) => {
 };
 
 controller.updateUsername = async (req, res, next) => {
-  console.log("req.body", req.body);
-  console.log("req.params", req.params);
   try {
     const { name } = req.body; // for sql SET
     const { password } = req.params;
