@@ -335,7 +335,6 @@ controller.updateIncidentDetails = async (req, res, next) => {
 
 // removes fields in public.incident table by ID
 controller.removeIncident = async (req, res, next) => {
-  console.log('req.body', req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const text = `DELETE FROM public.incident WHERE incident_id = $1`;
