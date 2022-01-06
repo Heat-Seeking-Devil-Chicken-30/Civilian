@@ -5,6 +5,8 @@ const Incident = (props) => {
 
 let today = moment();
 
+
+
   return (
     <div className='incident-container'>
     <img src={props.incident.image_url}/>
@@ -22,6 +24,8 @@ let today = moment();
     </div>
     
     <div className='time_created'>{moment(props.incident.time).format('DD MMM YYYY h:mm: ss A')}
+    
+    <button id='verified-button'>✓ VERIFIED</button>
     </div>
 
     </div>

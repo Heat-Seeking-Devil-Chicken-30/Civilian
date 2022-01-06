@@ -231,6 +231,21 @@ body{
   margin-right: 10px;
 }
 
+#verified-button { 
+  background-color:#29f797;
+  border: none;
+  height: 25px;
+  width: 65px;
+  font-size: 9px;
+  padding-right: 0.2em;
+  padding-left: 0.2em;
+  padding-top: 0.01em;
+  padding-bottom: 0.01em;
+  box-shadow: none;
+  margin-top: 55%;
+  margin-left: 15px;
+}
+
 form button { 
   width: 20%;
   float: right;
@@ -276,7 +291,7 @@ form button {
 }
 
 .post {
-  flex: 1 3 150px;
+  /* flex: 1 3 150px; */
   min-width: 75px;
   min-height: 75px;
   max-height: 150px; 
@@ -294,6 +309,7 @@ form button {
   z-index: 999;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 }
+
 
 .post-header {
   flex: 1 1 80%;
