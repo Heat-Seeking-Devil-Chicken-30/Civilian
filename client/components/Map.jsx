@@ -44,7 +44,7 @@ const Map = (props) => {
   };
   const fullscreenControlStyle = {
     right: 10, 
-    bottom: 10
+    top: 70
   }
 
   // const handleGeocoderViewportChange = useCallback(
@@ -94,7 +94,7 @@ const Map = (props) => {
           <Marker key={key + 1} latitude={el.latitude} longitude={el.longitude} address={el.address} id={el.id}>
 
             <button className='map-pin' onClick={(e) => {props.changeActivePost(el.id)}} style={{backgroundColor: 'transparent', border: 'none'}}>
-              <img src={logo} alt='pin' className='incident-pin' style={{backgroundColor: 'transparent', height: '20px', width: 'auto'}}/>
+              <img src={logo} alt='pin' className='incident-pin' style={{backgroundColor: 'transparent', height: '50px', width: 'auto'}}/>
             </button>
           </Marker>
           )

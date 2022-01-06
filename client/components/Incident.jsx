@@ -3,6 +3,11 @@ import moment from 'moment';
 
 const Incident = (props) => {
 
+  // add mapStateToProps and mapDispatchToProps to enable 
+  // expanded post to show onclick of incidentContainer
+  // viewport to change and zoom to geolocation of post coordinates
+  
+
 let today = moment();
 
   return (
@@ -22,6 +27,7 @@ let today = moment();
     </div>
     
     <div className='time_created'>{moment(props.incident.time).format('DD MMM YYYY h:mm: ss A')}
+    <button id='verified-button'>✓ VERIFIED</button>
     </div>
 
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
 console.log('in Post.jsx');
 
@@ -26,8 +27,8 @@ const Post = (props) => {
     <>
     {props.title !== null && (<div className='post' onClick={() => props.setExpandedPost(true)}>
       <div className='post-header'>
-        <p className='post-time'>Last updated at {props.time} </p>
-        <p className='post-title'> {props.title} </p>
+        <p className='post-time'>Last updated at {moment(props.time).format('DD MMM YYYY h:mm: ss A')} </p>
+        <h3 className='post-title' style={{fontWeight: 700}}> {props.title} </h3>
         <p className='post-location'> {props.street_name} </p>
         <p className='post-details'> {props.details} </p>
       </div> 
@@ -39,5 +40,6 @@ const Post = (props) => {
     </>
   );
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
