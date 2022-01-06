@@ -315,10 +315,9 @@ controller.updateIncidentImage = async (req, res, next) => {
 };
 
 controller.updateIncidentDetails = async (req, res, next) => {
-  console.log("req.body", req.body);
   try {
-    const { id } = req.params; // for sql WHERE
     const { details } = req.body; // for sql SET
+    const { id } = req.params; // for sql WHERE
     const text = `UPDATE public.incident SET details = $1 WHERE incident_id = $2`;
 
     await db.query(text, [details, id]);
@@ -334,9 +333,8 @@ controller.updateIncidentDetails = async (req, res, next) => {
   }
 };
 
-// removes fields in public.incident table by column name
+// removes fields in public.incident table by ID
 controller.removeIncident = async (req, res, next) => {
-  console.log('req.body', req.body);
   try {
     const { id } = req.params; // for sql WHERE
     const text = `DELETE FROM public.incident WHERE incident_id = $1`;
@@ -345,10 +343,68 @@ controller.removeIncident = async (req, res, next) => {
     return next();
   } catch (error) {
     return next({
-      log: `controller.removeIncidentTitle ERROR found`,
+      log: `controller.removeIncident ERROR found`,
       status: 500,
       message: {
-        err: 'Error occurred in controller.removeIncidentTitle. Check the server logs.',
+        err: 'Error occurred in controller.removeIncident. Check the server logs.',
+      },
+    });
+  }
+};
+
+controller.updateUsername = async (req, res, next) => {
+  try {
+    const { name } = req.body; // for sql SET
+    const { password } = req.params;
+    const text = `UPDATE public.user SET name = $1 WHERE password = $2`;
+
+    await db.query(text, [name,password]);
+    return next();
+  } catch (error) {
+    return next({
+      log: `controller.updateUsername ERROR found`,
+      status: 500,
+      message: {
+        err: "Error occurred in controller.updateUsername. Check the server logs.",
+      },
+    });
+  }
+};
+
+
+controller.updatePW = async (req, res, next) => {
+  try {
+    const { password } = req.body; // for sql SET
+    const { name } = req.params;
+    const text = `UPDATE public.user SET password = $1 WHERE name = $2`;
+
+    await db.query(text, [password,name]);
+    return next();
+  } catch (error) {
+    return next({
+      log: `controller.updatePW ERROR found`,
+      status: 500,
+      message: {
+        err: "Error occurred in controller.updatePW. Check the server logs.",
+      },
+    });
+  }
+};
+
+// removes fields in public.incident table by column name
+controller.removeUser = async (req, res, next) => {
+  try {
+    const { id } = req.params; // for sql WHERE
+    const text = `DELETE FROM public.user WHERE name = $1`;
+
+    await db.query(text, [id]);
+    return next();
+  } catch (error) {
+    return next({
+      log: `controller.removeUser ERROR found`,
+      status: 500,
+      message: {
+        err: 'Error occurred in controller.User. Check the server logs.',
       },
     });
   }
