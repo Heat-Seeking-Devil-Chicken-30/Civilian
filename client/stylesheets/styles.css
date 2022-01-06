@@ -1,4 +1,3 @@
-
 * {
   margin: 0;
   padding: 0;
@@ -40,7 +39,7 @@ body{
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 320px;
   gap: 15px;
   /* padding: 15px; */
   margin-bottom: 10vh;
@@ -94,14 +93,14 @@ body{
 #civ{
   position: absolute;
   top: 50%;
-  left: 0%;
+  left: -10%;
   transform: translate(-90%, -50%);
 }
 
 #lian{
   position: absolute;
   top: 50%;
-  left: 90%;
+  left: 100%;
   transform: translate(0, -50%);
 }
 
@@ -148,7 +147,6 @@ body{
   margin-right: 1.5vw;
 }
 
-
 #map-img{
   width: 100%;
   height: 100%;;
@@ -164,12 +162,13 @@ body{
   height: 100%;
   flex-direction: column;
   justify-content: space-evenly;
+  background-color: rgba(16, 16, 16, 0.475);
+  overflow: hidden;
 }
-
 
 #search-field { 
   width: 100%;;
-  background-color: black;
+  background-color: #11141a;
   padding: 0;
   margin: 0;
   outline: none; 
@@ -178,13 +177,59 @@ body{
   align-self: flex-start;
   color: white;
   padding-left: 5px;
+  height: 3vh;
+  border: none;
 }
 
 #searchbox { 
   display: flex; 
   box-shadow: none;
+  /* margin-bottom: 2vh; */
+  border: rgb(179, 179, 179) solid 0.3px;
 }
 
+.incident-container {
+  padding-left: 10px;
+  /* border-top: rgba(255, 255, 255, 0.221) solid 0.15px; */
+  border-bottom: rgba(255, 255, 255, 0.221) solid 0.15px;
+  display: flex;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.incident-container img { 
+  height: 6em;
+  width: 6em;
+  border-radius: 8px;
+}
+
+.incident-details-container p { 
+  font-size: 0.7em;
+  font-weight: 200;
+  color: grey;
+}
+
+.incident-details-container h4 { 
+  font-size: 1em;
+  font-weight: 700;
+  padding-bottom: 2.5%;
+}
+
+.incident-details-container {
+  padding-left: 4%;
+}
+
+.time_created_fromNow { 
+  font-size: 0.6em;
+  color: rgb(242, 241, 241);
+  padding-top: 5%;
+}
+
+.time_created { 
+  font-size: 0.6em;
+  color: rgb(182, 182, 182);
+  margin-right: 10px;
+}
 
 form button { 
   width: 20%;
@@ -469,7 +514,7 @@ label {
 }
 
 .footer { 
-  background-color: black;
+  background-color: #060607;
   color: white;
   width: 100%;
   position: fixed;
@@ -477,4 +522,6 @@ label {
   bottom: 0;
   height: 5vh;
   text-align: center;
+  padding-top: 20px;
+  font-size: 10px;
 }

@@ -19,7 +19,7 @@ const initialState = {
   viewport: {
     latitude: 40.7128,
     longitude: -74.0060,
-    zoom: 12,
+    zoom: 13,
     width: '100%', // TODO: remove height and width 
     height: '100%'
   },
