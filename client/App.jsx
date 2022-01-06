@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import ReactDom from "react-dom";
 import Map from './components/Map';
 
-
 import { connect } from 'react-redux';
 import './stylesheets/styles.css';
 import logo from '../assets/danger-pin.png'
@@ -40,9 +39,9 @@ const App = (props) => {
         <img id="logo" src={logo}/>
         <span id="lian">LIAN</span>
       </div>
+      
       <div id="main-content">
-
-      <SearchPanel />
+      <SearchPanel/>
         <div id="map">
 
           {/* Map Component is rendered here */}
@@ -64,7 +63,7 @@ const App = (props) => {
         />
       )}
     <div class='footer'>
-    Footer
+    © CIVILIAN 2022
     </div>
     </div>
   );

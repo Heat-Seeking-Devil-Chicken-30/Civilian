@@ -21,7 +21,7 @@ const mapStateToProps = ({posts: { title, street_name, details, time, image_url 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const Post = (props) => {
-  console.log(props);
+  console.log('this is props : ', props);
   return (
     <>
     {props.title !== null && (<div className='post' onClick={() => props.setExpandedPost(true)}>
