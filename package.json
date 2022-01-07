@@ -5,7 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color \" \"nodemon ./server/server.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -46,6 +46,7 @@
     "redux-thunk": "^2.4.1",
     "sass": "^1.45.2",
     "sass-loader": "^12.4.0",
+    "supertest": "^6.1.6",
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
