@@ -6,8 +6,8 @@ import * as actions from '../actions/actions';
 import { bindActionCreators } from 'redux';
 import CustomMapController from './CustomMapController';
 import logo from '../../assets/danger-pin.png'
-import * as mapboxgl from 'mapbox-gl';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+// import * as mapboxgl from 'mapbox-gl';
+// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
 console.log('in Map.jsx')
 //destructuring the state to get lng, lat, zoom from redux state and put them into prop obj 
@@ -68,7 +68,7 @@ const Map = (props) => {
       width='100%' 
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN} 
       showCompass={false} // removes compass from navigationControl
-      mapStyle='mapbox://styles/rainlewis/cky0soy9upy3p17peegj7lacj'
+      mapStyle='mapbox://styles/rainlewis/cky3cjldx94pc14pefok2ej35'
       doubleClickZoom={false}
       attributionControl={false}
 
