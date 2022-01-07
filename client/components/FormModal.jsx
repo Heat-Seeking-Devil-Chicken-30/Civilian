@@ -23,9 +23,9 @@ const FormModal = (props) => {
   return (
     <div id="modal-overlay">
       <form className='form-modal'>
-        <IconContext.Provider value={{className: 'exit-modal', size:'1.5em'}}>
+        {/* <IconContext.Provider value={{className: 'exit-modal', size:'1.5em'}}>
           <AiOutlineCloseCircle onClick={(e) => props.onCloseButtonClick()}/>
-        </IconContext.Provider>
+        </IconContext.Provider> */}
         <div id="modal-logo-wrapper">
           <img id="logo" src={logo}/>
         </div>

@@ -1,23 +1,52 @@
 import React from 'react';
 import moment from 'moment';
+import { bindActionCreators } from 'redux';
+import { useDispatch, connect } from 'react-redux';
+import ReactMapGL, {FlyToInterpolator} from 'react-map-gl';
+import * as actions from '../actions/actions';
+// 3rd-party easing functions
+// import d3 from 'd3-ease';
 
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const Incident = (props) => {
+
+  const dispatch = useDispatch()
 
   // add mapStateToProps and mapDispatchToProps to enable 
   // expanded post to show onclick of incidentContainer
   // viewport to change and zoom to geolocation of post coordinates
+
   
+
+  // console.log('this is pinLocations inside Incident component: ', props.pinLocation)
+  // console.log(props.pinLocations.latitude)
+
+  // const {id, latitude, longitude } = props.pinLocation;
+  
+function handleClick(){
+  console.log('hello');
+  props.setMap({
+    longitude : props.pinLocation.longitude,
+    latitude : props.pinLocation.latitude,
+    bearing: 0,
+    pitch: 1,
+    zoom: 13,
+    transitionDuration: 5000,
+    transitionInterpolator: new FlyToInterpolator()
+  })
+}  
 
 let today = moment();
 
   return (
-    <div className='incident-container'>
+    <div className='incident-container' onClick={handleClick}>
     <img src={props.incident.image_url}/>
 
     <div className='incident-details-container'>
     <h4 className='incident-container-header'>{props.incident.title}</h4>
-      {/* <p className='post-details'> {props.incident.details} </p> */}
+      {/* <p className='post-details'> {props.incident.details} </p> */} 
       <p className='post-location'> {props.incident.street_name} </p>
+      <p className='post-pinLocation'> {props.pinLocation.latitude} </p>
       {/* {props.incident.video_url  && 
       <div className='post-video'>
         <iframe id="yt-vid" src={props.incident.video_url + YT_EMBED_OPTIONS} frameBorder="0">
@@ -34,5 +63,5 @@ let today = moment();
   )
 }
 
-
-export default Incident;
+// export default Incident;
+export default connect(null, mapDispatchToProps)(Incident);
