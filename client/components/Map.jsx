@@ -1,17 +1,12 @@
-import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
-import ReactMapGL, {FullscreenControl, NavigationControl, FlyToInterpolator, Marker} from 'react-map-gl';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/actions';
 import { bindActionCreators } from 'redux';
+import ReactMapGL, { FullscreenControl, NavigationControl, Marker } from 'react-map-gl';
+import * as actions from '../actions/actions';
 import CustomMapController from './CustomMapController';
 import logo from '../../assets/danger-pin.png'
-// import * as mapboxgl from 'mapbox-gl';
-// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 
-console.log('in Map.jsx')
 //destructuring the state to get lng, lat, zoom from redux state and put them into prop obj 
-
 const mapStateToProps = ({map: {viewport, pinLocations, allIncidents}}) => ({
   viewport,
   pinLocations,
@@ -33,11 +28,6 @@ const Map = (props) => {
     props.getCoordinates();
   }, [props.allIncidents])
 
-  // useEffect(() => {
-  //   props.getCoordinates();
-  // }, [props.pinLocations])
-  //console.log(props.pinLocations)
-
   const navControlStyle= {
     right: 10,
     top: 10,
@@ -46,19 +36,6 @@ const Map = (props) => {
     right: 10, 
     top: 70
   }
-
-  // const handleGeocoderViewportChange = useCallback(
-  //   (newViewport) => {
-  //     const geocoderDefaultOverrides = { transitionDuration: 1000 };
-
-  //     return handleViewportChange({
-  //       ...newViewport,
-  //       ...geocoderDefaultOverrides
-  //     });
-  //   },
-  //   [handleViewportChange]
-  // );
-
   
   return (
     
@@ -72,21 +49,11 @@ const Map = (props) => {
       doubleClickZoom={false}
       attributionControl={false}
 
-      // implementing FlyToInterpolator 
-      // transitionDuration={1000}
-      // transitionInterpolator={new FlyToInterpolator()} 
-
       // on dbl click => get coordinates, open incident modal, create a pin and send off to reducer 
       onDblClick={({ lngLat }) => {console.log(lngLat);props.saveUserCoords(lngLat);props.onOpenIncidentFormClick()}}
       // onViewportChange={handleViewportChange}
       onViewportChange={(newViewport) => {props.setMap(newViewport)}
     }>
-     {/* <Geocoder
-          mapRef={mapRef}
-          onViewportChange={handleGeocoderViewportChange}
-          mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN} 
-          position="top-left"
-        /> */}
 
         {props.pinLocations.map((el, key) => {
           return (

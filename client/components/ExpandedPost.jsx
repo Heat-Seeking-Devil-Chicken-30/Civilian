@@ -7,10 +7,8 @@ import { IconContext } from 'react-icons';
 
 const YT_EMBED_OPTIONS = '?loop=1&autoplay=1&rel=0&modestbranding=1&autohide=1&showinfo=0&controls=0';
 
-console.log('in ExpandedPost.jsx');
-
-// we are destructuring the state to get the title, loc, details, time from
-// the redux state and placing them into the props object
+// destructure the state to get the title, loc, details, time
+// and place them into the props object
 // The Post component "subscribes to" the changes seen in the state
 const mapStateToProps = ({posts:{ title, street_name, details, time, video_url }}) => ({
   title,
@@ -20,8 +18,8 @@ const mapStateToProps = ({posts:{ title, street_name, details, time, video_url }
   video_url
 })
 
-// allows us to use the actions in actions.js without having to wrap them so that we can invoke those functions
-// directly even though they were not created in this page
+// mapDispatchToProps allows us to directly invoke the action in the actions.js 
+// file even though they were not created in this page
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
 const ExpandedPost = (props) => {

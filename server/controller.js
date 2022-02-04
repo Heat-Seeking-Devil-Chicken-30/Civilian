@@ -80,7 +80,7 @@ controller.getIncidents = async (req, res, next) => {
 
 // get name, and photo of a user. Requires name and password
 controller.getUserName = async (req, res, next) => {
-  console.log('USERNAME req body', req.body);
+  
   try {
     const { name, password } = req.body;
     // SQL command string
@@ -96,7 +96,7 @@ controller.getUserName = async (req, res, next) => {
     // bcrypt comparison check
     await bcrypt.compare(password, hash, (err, ok) => {
       if (ok) {
-        console.log('bcrypt comparison check OK');
+        
         return next();
       } else {
         res.send(err);
@@ -122,8 +122,7 @@ controller.getUserName = async (req, res, next) => {
 
 // query incidents in public.incident by any value matching any part of public.incident.street_name
 controller.getIncidentByStreetName = async (req, res, next) => {
-  console.log('req.params in IncidentByStreetName', req.params);
-  console.log(new Date(Date.now()).toString());
+  
   try {
     const { name } = req.params;
     // SQL command string
@@ -150,7 +149,7 @@ controller.getIncidentByStreetName = async (req, res, next) => {
 
 // post incident into public.incident. Req(title, street_name, video_url, image_url, details) but values can be null!
 controller.postEvent = async (req, res, next) => {
-  console.log('req.body in postEvent', req.body);
+  
   try {
     // capture the current date and time to insert into sql db
     const time = new Date(Date.now()).toLocaleString();
@@ -193,7 +192,6 @@ controller.postEvent = async (req, res, next) => {
 
 // create a new row in public.user, storing name and encrypted password
 controller.newUser = async (req, res, next) => {
-  console.log('signupInfo', res.locals.signupInfo);
 
   try {
     // object destructuring the req.body to pass in to params
@@ -214,8 +212,6 @@ controller.newUser = async (req, res, next) => {
         RETURNING *
         `;
 
-    console.log('params', params);
-
     // our async function passing in the SQL command string 'text' and our params data
     const result = await db.query(text, params);
 
@@ -235,12 +231,12 @@ controller.newUser = async (req, res, next) => {
 
 // updates fields in public.incident table by column name
 controller.updateIncidentTitle = async (req, res, next) => {
-  console.log('req.body', req.body);
+  
   try {
     const { id } = req.params; // for sql WHERE
-    console.log('id in updateTitle', id);
+    
     const { title } = req.body; // for sql SET
-    console.log('title in updateTitle', title);
+    
     const text = `UPDATE public.incident SET title = $1 WHERE incident_id = $2`;
 
     await db.query(text, [title, id]);
@@ -257,7 +253,7 @@ controller.updateIncidentTitle = async (req, res, next) => {
 };
 
 controller.updateIncidentStreetName = async (req, res, next) => {
-  console.log('req.body', req.body);
+  
   try {
     const { id } = req.params; // for sql WHERE
     const { streetname } = req.body; // for sql SET
@@ -277,7 +273,7 @@ controller.updateIncidentStreetName = async (req, res, next) => {
 };
 
 controller.updateIncidentVideo = async (req, res, next) => {
-  console.log('req.body', req.body);
+  
   try {
     const { id } = req.params; // for sql WHERE
     const { videoUrl } = req.body; // for sql SET
@@ -297,7 +293,7 @@ controller.updateIncidentVideo = async (req, res, next) => {
 };
 
 controller.updateIncidentImage = async (req, res, next) => {
-  console.log('req.body', req.body);
+  
   try {
     const { id } = req.params; // for sql WHERE
     const { imageUrl } = req.body; // for sql SET
@@ -317,7 +313,7 @@ controller.updateIncidentImage = async (req, res, next) => {
 };
 
 controller.updateIncidentDetails = async (req, res, next) => {
-  console.log('req.body', req.body);
+  
   try {
     const { details } = req.body; // for sql SET
     const { id } = req.params; // for sql WHERE
@@ -397,7 +393,7 @@ controller.updatePW = async (req, res, next) => {
 controller.removeUser = async (req, res, next) => {
   try {
     const { user_id } = req.params; // for sql WHERE
-    console.log('user_id in removeUser', user_id);
+    
     const text = `DELETE FROM public.user WHERE user_id = $1`;
 
     await db.query(text, [user_id]);

@@ -36,7 +36,7 @@ router.post('/signup', controller.hash, controller.newUser, (req, res) =>
   res.status(201).json(res.locals.newUser)
 );
 
-// all these update public.incident by its relevant column.
+// all these update public.incident by its relevant column
 // :Id should match primary key of public.incident.incident_id
 router.put(
   '/incidents/update-title:id',
@@ -68,14 +68,14 @@ router.put(
   (req, res) => res.status(200).json('details was updated!')
 );
 
-// Removes public.incident by incident_id.
+// Removes public.incident by incident_id
 router.delete(
   '/incidents/remove-incident:id',
   controller.removeIncident,
   (req, res) => res.status(200).json('Incident was removed!')
 );
 
-// all these update user info by its relevant column.
+// all these update user info by its relevant column
 router.put(
   '/users/update-username:user_id',
   controller.updateUsername,
@@ -86,7 +86,7 @@ router.put('/users/update-pw:user_id', controller.updatePW, (req, res) =>
   res.status(200).json('Password was updated!')
 );
 
-// Removes public.user by username.
+// Removes public.user by username
 router.delete('/users/remove-user:user_id', controller.removeUser, (req, res) =>
   res.status(200).json('Incident was removed!')
 );

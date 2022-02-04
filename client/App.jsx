@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import { useState, useEffect } from 'react';
-import ReactDom from "react-dom";
+import React, { useState } from 'react';
 import Map from './components/Map';
 
 import { connect } from 'react-redux';
@@ -10,11 +8,12 @@ import { BsPersonCircle } from 'react-icons/bs'
 import { IconContext } from 'react-icons';
 
 import Post from './components/Post';
-import {CSSTransition} from 'react-transition-group';
+import { CSSTransition } from 'react-transition-group';
 import ExpandedPost from './components/ExpandedPost';
 import FormModal from './components/FormModal'
 import IncidentModal from './components/IncidentModal'
 import SearchPanel from './components/SearchPanel'
+
 
 const mapStateToProps = ({posts: { expandedPost }, user: {isLoggedIn, username, photo}}) => ({
   expandedPost,
@@ -22,8 +21,6 @@ const mapStateToProps = ({posts: { expandedPost }, user: {isLoggedIn, username, 
 })
 
 const App = (props) => {
-  console.log('in app.jsx');
-  console.log(props);
 
   const [showFormModal, setShowFormModal] = useState(true);
   const [showIncidentModal, setShowIncidentModal] = useState(false);
@@ -62,7 +59,6 @@ const App = (props) => {
           onCloseButtonClick={() => {setShowIncidentModal(false)}}
         />
       )}
-
 
     <div class='footer'>
     © CIVILIAN 2022

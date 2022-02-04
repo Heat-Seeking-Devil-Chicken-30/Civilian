@@ -21,14 +21,11 @@ const mapDispatchToProps = dispatch => ({
         e.target.form[1].value, 
         e.target.form[2].value, 
         e.target.form[3].value,
-        // e.target.form[4].value
+        
       )
     );
   },
-  // refreshPins: () => {
-  //   console.log('refreshing pins')
-  //   dispatch(getCoordinates());
-  // }
+
 });
 
 const IncidentModal = (props) => {
