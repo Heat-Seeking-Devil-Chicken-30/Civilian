@@ -2,8 +2,6 @@ import {MapController} from 'react-map-gl';
 
 export default class CustomMapController extends MapController {
 
-  
-  
   setOptions(options) {
     super.setOptions(options);
     // save the custom callback

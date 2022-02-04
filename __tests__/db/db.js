@@ -1,4 +1,3 @@
-const db = require('../../server/database');
 const request = require('supertest');
 const { doesNotMatch } = require('assert');
 const bcrypt = require('bcrypt');
@@ -106,7 +105,7 @@ describe('Route Integration Tests', () => {
         details: 'Test Details',
       };
 
-      //Addeds Incident
+      //Added Incident
       incident_id = await request(server)
         .post('/api/postevent')
         .send(incident_entry)
@@ -114,8 +113,6 @@ describe('Route Integration Tests', () => {
         .expect(201)
         .then((res) => res.body.incident_id);
 
-      // const queryString = `DELETE FROM "public"."incident" WHERE incident_id=${incident_id}`;
-      // await db.query(queryString);
     });
 
     //  put /incidents/update-title:id

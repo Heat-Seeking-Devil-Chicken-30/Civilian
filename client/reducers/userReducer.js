@@ -12,7 +12,7 @@ const userReducer = (state=initialState, action) => {
   switch (action.type){
 
     case types.GET_USERNAME:
-    console.log('get user payload', action.payload);
+
     return {
       ...state,
       isLoggedIn: true,
@@ -21,7 +21,7 @@ const userReducer = (state=initialState, action) => {
     };
 
     case types.SAVE_USER_COORDS:
-    console.log('save user coords reducer', action.payload);
+
     return {
       ...state,
       lngLat : [...action.payload]
@@ -31,8 +31,6 @@ const userReducer = (state=initialState, action) => {
       return state;
   }
 
-  
 }
-
 
 export default userReducer;

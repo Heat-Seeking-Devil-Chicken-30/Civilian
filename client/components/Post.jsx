@@ -4,8 +4,6 @@ import * as actions from '../actions/actions';
 import { bindActionCreators } from 'redux';
 import moment from 'moment';
 
-console.log('in Post.jsx');
-
 // we are destructuring the state to get the title, loc, details, time from
 // the redux state and placing them into the props object
 // The Post component "subscribes to" the changes seen in the state
@@ -40,6 +38,5 @@ const Post = (props) => {
     </>
   );
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

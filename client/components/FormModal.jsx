@@ -1,20 +1,20 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { getUsername, signUp } from '../actions/actions';
-import { AiOutlineCloseCircle } from 'react-icons/ai'
-import { IconContext } from 'react-icons';
+// import { AiOutlineCloseCircle } from 'react-icons/ai'
+// import { IconContext } from 'react-icons';
 import logo from '../../assets/danger-pin.png'
 
 const mapDispatchToProps = dispatch => ({
   // create functions that will dispatch action creators
   login: (e) => {
     e.preventDefault();
-    console.log(e.target.form[0].value, e.target.form[1].value);
+  
     dispatch(getUsername(e.target.form[0].value, e.target.form[1].value));
   },
   signup: (e) => {
     e.preventDefault();
-    console.log(e.target.form[0].value, e.target.form[1].value);
+    
     dispatch(signUp(e.target.form[0].value, e.target.form[1].value));
   },
 });

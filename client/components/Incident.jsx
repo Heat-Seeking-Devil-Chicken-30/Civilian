@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { useDispatch, connect } from 'react-redux';
-import ReactMapGL, {FlyToInterpolator} from 'react-map-gl';
+import {FlyToInterpolator} from 'react-map-gl';
 import * as actions from '../actions/actions';
 // 3rd-party easing functions
 // import d3 from 'd3-ease';
@@ -10,21 +10,10 @@ import * as actions from '../actions/actions';
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const Incident = (props) => {
 
-  const dispatch = useDispatch()
-
-  // add mapStateToProps and mapDispatchToProps to enable 
-  // expanded post to show onclick of incidentContainer
-  // viewport to change and zoom to geolocation of post coordinates
-
+const dispatch = useDispatch()
   
-
-  // console.log('this is pinLocations inside Incident component: ', props.pinLocation)
-  // console.log(props.pinLocations.latitude)
-
-  // const {id, latitude, longitude } = props.pinLocation;
+const handleClick = () => {
   
-function handleClick(){
-  console.log('hello');
   props.setMap({
     longitude : props.pinLocation.longitude,
     latitude : props.pinLocation.latitude,
@@ -35,8 +24,6 @@ function handleClick(){
     transitionInterpolator: new FlyToInterpolator()
   })
 }  
-
-let today = moment();
 
   return (
     <div className='incident-container' onClick={handleClick}>
