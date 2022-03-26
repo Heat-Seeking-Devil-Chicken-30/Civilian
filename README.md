@@ -2,6 +2,8 @@
 
 Basic web application based on Citizen, a mobile app used in New York, that lets users report incidents on a map and view the list of reported incidents on a map using Mapbox's Map services. This was built over 3 days to primarily interact with the Mapbox API and use the react-redux library. 
 
+![Civilian](./assets/civilian-2.png)
+
 To interact or build on this app, you will need to insert your own database URI in database.js.
 
 ## Getting Started
